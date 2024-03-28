@@ -1,0 +1,6 @@
+@DotnetBlogApi_HostAddress = http://localhost:5073
+
+GET {{DotnetBlogApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
