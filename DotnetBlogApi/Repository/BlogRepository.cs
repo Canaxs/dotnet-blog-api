@@ -4,7 +4,7 @@ namespace DotnetBlogApi.Repository
 {
     public interface BlogRepository
     {
-        ICollection<Blog> GetBlogs();
+        List<Blog> GetBlogs();
         bool CreateBlog(Blog blog);
         bool DeleteBlog(int id);
         Blog getBlog(int id);

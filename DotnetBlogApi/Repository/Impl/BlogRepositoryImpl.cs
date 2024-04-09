@@ -38,7 +38,7 @@ namespace DotnetBlogApi.Repository.Impl
             return _context.Blogs.Where(c => c.Id == id).FirstOrDefault();
         }
 
-        public ICollection<Blog> GetBlogs()
+        public List<Blog> GetBlogs()
         {
             return _context.Blogs.ToList();
         }
