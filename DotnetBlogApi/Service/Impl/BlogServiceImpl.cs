@@ -27,13 +27,18 @@ namespace DotnetBlogApi.Service.Impl
         public BlogDTO deleteBlog(int id)
         {
             BlogDTO blogDTO = new BlogDTO();
-            if (_blogRepository.DeleteBlog(id))
-            {
+            try{
+
                 Blog blog = _blogRepository.getBlog(id);
                 blogDTO.Username = blog.Username;
-                blogDTO.Title = blog.Title ;
+                blogDTO.Title = blog.Title;
                 blogDTO.Description = blog.Description;
                 blogDTO.Starpoint = blog.Starpoint;
+                _blogRepository.DeleteBlog(id);
+            }
+            catch (Exception)
+            {
+                throw;
             }
             return blogDTO;
         }

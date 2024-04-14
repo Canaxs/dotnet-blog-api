@@ -10,17 +10,17 @@ namespace DotnetBlogApi.Data
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-
         }
 
-        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Blog> Blogs { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Blog>()
-                .Property(p => p.Id)
-                .ValueGeneratedOnAdd();
+            modelBuilder.Entity<Blog>().ToTable("Blog");
+
         }
+
+
 
     }
 }

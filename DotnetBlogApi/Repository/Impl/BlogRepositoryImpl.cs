@@ -30,7 +30,7 @@ namespace DotnetBlogApi.Repository.Impl
                 _context.Remove(blog);
             }
 
-            return Save();
+            return true;
         }
 
         public Blog getBlog(int id)

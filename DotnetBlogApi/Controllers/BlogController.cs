@@ -20,6 +20,7 @@ namespace DotnetBlogApi.Controllers
 
         [HttpGet]
         [Route("blogsGet")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Blog>))]
         public IActionResult blogsGet()
         {
             return Ok(_blogService.getBlogs());
@@ -27,6 +28,7 @@ namespace DotnetBlogApi.Controllers
 
         [HttpPost]
         [Route("blogGet")]
+        [ProducesResponseType(200, Type = typeof(Blog))]
         public IActionResult blogGet([FromBody] BlogRequest blogRequest)
         {
             return Ok(_blogService.GetBlog(blogRequest.Id));
@@ -35,6 +37,7 @@ namespace DotnetBlogApi.Controllers
 
         [HttpPost]
         [Route("createBlog")]
+        [ProducesResponseType(200, Type = typeof(Boolean))]
         public IActionResult createBlog([FromBody] BlogDTO blogDTO)
         {
             return Ok(_blogService.CreateBlog(blogDTO));
@@ -42,6 +45,7 @@ namespace DotnetBlogApi.Controllers
 
         [HttpDelete]
         [Route("deleteBlog")]
+        [ProducesResponseType(200, Type = typeof(BlogDTO))]
         public IActionResult deleteBlog([FromBody] BlogRequest BlogRequest)
         {
             return Ok(_blogService.deleteBlog(BlogRequest.Id));
