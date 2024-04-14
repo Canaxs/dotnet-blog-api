@@ -1,6 +1,7 @@
 ﻿using DotnetBlogApi.Dto;
 using DotnetBlogApi.Models;
 using DotnetBlogApi.Repository;
+using Microsoft.Extensions.Logging;
 
 namespace DotnetBlogApi.Service.Impl
 {
@@ -9,9 +10,12 @@ namespace DotnetBlogApi.Service.Impl
 
         private readonly BlogRepository _blogRepository;
 
-        public BlogServiceImpl(BlogRepository blogRepository)
+        private readonly ILogger _logger;
+
+        public BlogServiceImpl(BlogRepository blogRepository, ILogger<BlogServiceImpl> logger)
         {
             _blogRepository = blogRepository;
+            _logger = logger;
         }
 
         public bool CreateBlog(BlogDTO blogDTO)
@@ -35,10 +39,11 @@ namespace DotnetBlogApi.Service.Impl
                 blogDTO.Description = blog.Description;
                 blogDTO.Starpoint = blog.Starpoint;
                 _blogRepository.DeleteBlog(id);
+                _logger.LogInformation("DeleteBlog: "+blogDTO.Username);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                _logger.LogInformation("Delete Exception"+e.Message);
             }
             return blogDTO;
         }
